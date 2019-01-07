@@ -1,36 +1,48 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+// You can import style files in ./App.js and add global styles in ./App.css
+import '@progress/kendo-theme-default/dist/all.css'
+import logo from './logo.svg'
+import './App.css'
 
 // Import the Grid component.
-import { Grid, GridColumn } from '@progress/kendo-react-grid';
+import { Grid, GridColumn } from '@progress/kendo-react-grid'
 
 class App extends Component {
- constructor(props) {
-   super(props);
+  constructor(props) {
+    super(props)
 
-   this.state = {
-     data: [
-       {ProductName: "Chai", Price: 10},
-       {ProductName: "Chang", Price: 20}
-     ],
-     title: "Hello from KendoReact!"
-   }
- }
- render() {
-   return (
-     <div className="App">
-       <header className="App-header">
-         <img src={logo} className="App-logo" alt="logo" />
-         <h1 className="App-title">{this.state.title}</h1>
-       </header>
-         <Grid data={this.state.data}>
-           <GridColumn field="ProductName" title="Product name"/>
-           <GridColumn field="Price"/>
-         </Grid>
-     </div>
-   );
- }
+    this.state = {
+      data: [
+        { ProductName: 'Chai', Price: 10, Quantity: 7 },
+        { ProductName: 'Chang', Price: 20, Quantity: 8 },
+        { ProductName: 'Chai', Price: 10, Quantity: 7 },
+        { ProductName: 'Chang', Price: 20, Quantity: 8 },
+        { ProductName: 'Chai', Price: 10, Quantity: 7 },
+        { ProductName: 'Chang', Price: 20, Quantity: 8 },
+        { ProductName: 'Chai', Price: 10, Quantity: 7 },
+        { ProductName: 'Chang', Price: 20, Quantity: 8 },
+        { ProductName: 'Chai', Price: 10, Quantity: 7 },
+        { ProductName: 'Chang', Price: 20, Quantity: 8 },
+        { ProductName: 'Chai', Price: 10, Quantity: 7 },
+        { ProductName: 'Chang', Price: 20, Quantity: 8 },
+        { ProductName: 'Chai', Price: 10, Quantity: 7 },
+        { ProductName: 'Chang', Price: 20, Quantity: 8 }
+      ],
+      title: 'This is my APP'
+    }
+  }
+  render() {
+    return (
+      <div className="App">
+        <h1>{this.state.title} </h1>
+        <Grid data={this.state.data}>
+          <GridColumn field="ProductName" title="Product" />
+          <GridColumn field="Price" />
+          <GridColumn field="Quantity" title="How Many" />
+        </Grid>
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App
