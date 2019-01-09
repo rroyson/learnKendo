@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 // You can import style files in ./App.js and add global styles in ./App.css
-import '@progress/kendo-theme-default/dist/all.css'
-import './App.css'
-
+import { Button } from '@progress/kendo-react-buttons'
+import '../App.css'
+import { Link } from 'react-router-dom'
 // Import the Grid component.
 import { Grid, GridColumn } from '@progress/kendo-react-grid'
 
@@ -15,8 +15,8 @@ class App extends Component {
       take: 5,
       title: 'This is my APP',
       data: [
-        { ProductName: 'Chai', Price: 10, Quantity: 7 },
-        { ProductName: 'Chang', Price: 20, Quantity: 8 },
+        { ProductName: 'Chai', Price: 10, Quantity: 7, _id: '123' },
+        { ProductName: 'Chang', Price: 20, Quantity: 8, _id: '32131' },
         { ProductName: 'Chai', Price: 10, Quantity: 7 },
         { ProductName: 'Chang', Price: 20, Quantity: 8 },
         { ProductName: 'Chai', Price: 10, Quantity: 7 },
@@ -40,12 +40,25 @@ class App extends Component {
       skip: event.page.skip,
       take: event.page.take
     })
-    console.log(this.state)
+  }
+
+  handleClick = e => {
+    e.preventDefault()
+    alert('you clicked it')
+  }
+
+  handleRowClick = e => {
+    console.log('state', this.state)
+    this.props.history.push({
+      pathname: '/new',
+      state: this.state.data
+    })
   }
 
   render() {
     const styles = {
-      gridContainer: { height: '200px' }
+      gridContainer: { height: '400px', width: '50%', justify: 'center' },
+      button: {}
     }
     return (
       <div className="App">
@@ -62,11 +75,17 @@ class App extends Component {
           onPageChange={this.pageChange}
           pageSize={5}
           total={this.state.data.length}
+          onRowClick={this.handleRowClick}
         >
           <GridColumn field="ProductName" title="Product" />
           <GridColumn field="Price" />
           <GridColumn field="Quantity" title="How Many" />
         </Grid>
+        <Button
+          onClick={this.handleClick}
+          style={styles.button}
+          icon="calendar"
+        />{' '}
       </div>
     )
   }
